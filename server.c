@@ -97,7 +97,7 @@ void *handle_client(void *arg) {
 			sprintf(clist[file_count].owner,"%d",client_sock);
 			clist[file_count].is_writing = 0;
 			pthread_mutex_init(&clist[file_count].lock, NULL);
-			//fclose(file);
+			fclose(file);
 			file_count++;
 			printf("Creating file success\n");
 			strncpy(command, "Create success\n", strlen("Create success\n"));
@@ -145,7 +145,7 @@ void *handle_client(void *arg) {
         						putchar(ch);
 							
     						}
-						
+							fclose(file);
 						
 						char client_user[50];
             					sprintf(client_user, "%d", client_sock);
@@ -237,7 +237,7 @@ void *handle_client(void *arg) {
 						else {
                     					snprintf(command, sizeof(command), "No content received.\n");
 							memset(command,0,sizeof(buffer));
-                				}
+                				}fclose(file);
                         			clist[i].is_writing = 0;
 
 						char client_user[50];
